@@ -1,61 +1,91 @@
-  <div class="header">
-        <h1>🚀 Bari Nkhdam - Jobs</h1>
-    </div>
-
-    <div id="job-container">
-        <p style="text-align:center">Loading jobs...</p>
-    </div>
-
-    <script>
-        // هنا الكود كيمشي يجيب المعلومات
-        fetch('/content/data.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("HTTP error " + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const container = document.getElementById('job-container');
-                // نقيو المكان
-                container.innerHTML = '';
-
-                // نتأكد واش كاينين عروض
-                if (!data.jobs || data.jobs.length === 0) {
-                    container.innerHTML = '<p style="text-align:center">No jobs found yet.</p>';
-                    return;
-                }
-
-                // نستفو العروض
-                data.jobs.forEach(job => {
-                    const html = `
-                        <div class="job-card">
-                            <div class="job-title">${job.title}</div>
-                            <div class="company">🏢 ${job.company}</div>
-                            <div class="city">📍 ${job.city}</div>
-                        </div>
-                    `;
-                    container.innerHTML += html;
-                });
-            })
-            .catch(err => {
-                console.error('Error:', err);
-                document.getElementById('job-container').innerHTML = 
-                    '<p style="text-align:center; color:red">Error loading jobs. Check console.</p>';
-            });
-    </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bari Nkhdam - Jobs</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; color: #333; }
+        
+        .job-card { 
+            background: white; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            transition: transform 0.2s;
+        }
+        .job-card:hover { transform: translateY(-2px); }
+        .job-title { font-size: 1.4em; color: #2c3e50; font-weight: bold; }
+        .company { color: #27ae60; font-weight: 600; margin-top: 5px; }
+        .city { color: #7f8c8d; font-size: 0.9em; margin-top: 5px; }
+        .desc { margin-top: 10px; color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Bari Nkhdam - آخر العروض</h1>
+    
+    <div id="job-container">
+        <p style="text-align:center">جارٍ تحميل العروض...</p>
+    </div>
+</div>
+
+<script>
+    // التغيير المهم كاين هنا: زدنا "content/" قبل سمية الملف
+    fetch('content/data.json') 
+        .then(response => {
+            if (!response.ok) {
+                // إيلا مالقاش الملف، غايعطينا 404
+                throw new Error("الملف content/data.json ما كاينش (404)");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('job-container');
+            container.innerHTML = ''; // خوي الميساج د التحميل
+
+            // تأكد واش كاينين Jobs فالملف
+            if (!data.jobs || data.jobs.length === 0) {
+                container.innerHTML = '<p style="text-align:center">ما كاينا حتى خدمة حالياً.</p>';
+                return;
+            }
+
+            // رسم العروض
+            data.jobs.forEach(job => {
+                const card = document.createElement('div');
+                card.className = 'job-card';
+                card.innerHTML = `
+                    <div class="job-title">${job.title}</div>
+                    <div class="company">🏢 ${job.company}</div>
+                    <div class="city">📍 ${job.city}</div>
+                    <div class="desc">${job.body ? job.body.substring(0, 150) + '...' : ''}</div>
+                `;
+                container.appendChild(card);
             });
-          }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('job-container').innerHTML = 
+                '<p style="text-align:center; color:red;">⚠️ مشكل: تأكد أنك درتي Publish من Admin باش يتكريا ملف content/data.json</p>';
         });
-      }
-    </script>
+
+    // كود التوجيه لـ Admin
+    if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+            if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                });
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
