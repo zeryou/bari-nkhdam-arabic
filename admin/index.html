@@ -1,12 +1,61 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bari Nkhdam Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <div class="header">
+        <h1>🚀 Bari Nkhdam - Jobs</h1>
+    </div>
+
+    <div id="job-container">
+        <p style="text-align:center">Loading jobs...</p>
+    </div>
+
+    <script>
+        // هنا الكود كيمشي يجيب المعلومات
+        fetch('/content/data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const container = document.getElementById('job-container');
+                // نقيو المكان
+                container.innerHTML = '';
+
+                // نتأكد واش كاينين عروض
+                if (!data.jobs || data.jobs.length === 0) {
+                    container.innerHTML = '<p style="text-align:center">No jobs found yet.</p>';
+                    return;
+                }
+
+                // نستفو العروض
+                data.jobs.forEach(job => {
+                    const html = `
+                        <div class="job-card">
+                            <div class="job-title">${job.title}</div>
+                            <div class="company">🏢 ${job.company}</div>
+                            <div class="city">📍 ${job.city}</div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('job-container').innerHTML = 
+                    '<p style="text-align:center; color:red">Error loading jobs. Check console.</p>';
+            });
+    </script>
+    
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
 </body>
 </html>
