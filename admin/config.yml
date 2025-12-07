@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main  # تأكد واش Branch عندك سميتها main أو master
+  branch: main
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -8,13 +8,14 @@ public_folder: "/images/uploads"
 collections:
   - name: "jobs"
     label: "Jobs"
-    folder: "content/jobs" # هنا CMS غايخزن العروض (كل عرض فملف)
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Job Title", name: "title", widget: "string"}
-      - {label: "Company", name: "company", widget: "string"}
-      - {label: "City", name: "city", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "body", widget: "markdown"}
-      - {label: "Apply Link", name: "link", widget: "string"}
+    files:
+      - name: "all_jobs"
+        label: "Job Listings"
+        file: "content/data.json" 
+        fields:
+          - {label: "Job List", name: "jobs", widget: "list", fields: [
+              {label: "Job Title", name: "title", widget: "string"},
+              {label: "Company Name", name: "company", widget: "string"},
+              {label: "City", name: "city", widget: "string"},
+              {label: "Description", name: "body", widget: "markdown"}
+            ]}
