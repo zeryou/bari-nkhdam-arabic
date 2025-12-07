@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <title><data:view.title.escaped/></title>
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <b:skin><![CDATA[
+    /* 
+       Bari-Nkhdam.ma - Modern Job Listing Website Concept
+       Design System: Moroccan-inspired Palette + Modern Typography
+    */
+    
+    :root {
+        /* Brand Colors */
+        --primary: #C05621; /* Terracotta - Warm, Earthy, Energetic */
+        --primary-hover: #9C4215;
+        --secondary: #0F766E; /* Moroccan Teal - Trust, Professionalism */
+        --secondary-hover: #0D5E56;
+        --accent: #F59E0B; /* Amber - Highlights, Opportunity */
+        
+        /* Neutrals */
+        --bg-body: #FAFAF9; /* Warm Sand - Clean but not harsh white */
+        --bg-card: #FFFFFF;
+        --text-main: #1F2937; /* Dark Grey */
+        --text-muted: #6B7280;
+        --border: #E5E7EB;
+        
+        /* Typography */
+        --font-heading: 'Outfit', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        
+        /* Spacing & Radius */
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 1rem;
+        --radius-full: 9999px;
+        
+        /* Shadows */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Reset & Base */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: var(--font-body);
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text-main);
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s ease;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    img {
+        max-width: 100%;
+        display: block;
+    }
+    
+    /* Utilities */
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: var(--radius-md);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        font-family: var(--font-body);
+    }
+    
+    .btn-primary {
+        background-color: var(--primary);
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+        background-color: var(--secondary);
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background-color: var(--secondary-hover);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+        background-color: var(--primary);
+        color: white;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+        color: var(--secondary);
+    }
+    
+    .section-title p {
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    /* Header */
+    header {
+        background-color: var(--bg-card);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+    
+    .logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .logo span {
+        color: var(--secondary);
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .nav-links a {
+        font-weight: 500;
+        color: var(--text-main);
+    }
+    
+    .nav-links a:hover {
+        color: var(--primary);
+    }
+    
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-main);
+        cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(rgba(15, 118, 110, 0.9), rgba(15, 118, 110, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    
+    .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+        opacity: 0.9;
+    }
+    
+    .search-bar {
+        background: white;
+        padding: 1rem;
+        border-radius: var(--radius-lg);
+        display: flex;
+        gap: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .search-input {
+        flex: 1;
+        position: relative;
+    }
+    
+    .search-input input, .search-input select {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        outline: none;
+        color: var(--text-main);
+    }
+    
+    .search-input i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+    }
+    
+    .search-input input:focus, .search-input select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(192, 86, 33, 0.2);
+    }
+    
+    .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 4rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+    
+    .stat-label {
+        font-size: 0.875rem;
+        opacity: 0.9;
+    }
+    
+    /* Categories */
+    .categories {
+        padding: 5rem 0;
+    }
+    
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .category-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        text-align: center;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .category-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .category-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+    
+    .category-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .category-count {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+    }
+    
+    /* Featured Jobs */
+    .featured-jobs {
+        padding: 5rem 0;
+        background-color: #F3F4F6;
+    }
+    
+    .job-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+    
+    .job-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+    }
+    
+    .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 1rem;
+    }
+    
+    .company-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: var(--radius-md);
+        object-fit: cover;
+        background-color: #f0f0f0; /* Placeholder bg */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--text-muted);
+        overflow: hidden;
+    }
+    
+    .company-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .job-type {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: var(--radius-full);
+        text-transform: uppercase;
+        background: #E1EFFE; color: #1E429F; /* Default */
+    }
+    
+    /* Dynamic classes based on labels would need JS or complex CSS selectors, keeping simple for now */
+    
+    .job-title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .job-title a {
+        color: inherit;
+    }
+    
+    .company-name {
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-bottom: 1rem;
+        display: block;
+    }
+    
+    .job-details {
+        display: flex;
+        gap: 1rem;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .job-details span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .job-footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+    }
+    
+    .posted-date {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+    }
+    
+    /* How it Works */
+    .how-it-works {
+        padding: 5rem 0;
+    }
+    
+    .steps-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+    
+    .step-card {
+        text-align: center;
+        position: relative;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background-color: var(--secondary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 auto 1.5rem;
+    }
+    
+    .step-card h3 {
+        margin-bottom: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+        background-color: #111827;
+        color: white;
+        padding: 4rem 0 2rem;
+    }
+    
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+    
+    .footer-col h4 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+    }
+    
+    .footer-col ul li {
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-col ul li a {
+        color: #9CA3AF;
+    }
+    
+    .footer-col ul li a:hover {
+        color: var(--primary);
+    }
+    
+    .footer-bottom {
+        border-top: 1px solid #374151;
+        padding-top: 2rem;
+        text-align: center;
+        color: #9CA3AF;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .search-bar {
+            flex-direction: column;
+        }
+        
+        .hero-stats {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+    }
+    ]]></b:skin>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-briefcase"></i>
+                Bari-Nkhdam<span>.ma</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="#jobs">Find Jobs</a>
+                <a href="#companies">Companies</a>
+                <a href="/p/about.html">About Us</a>
+                <a href="/p/contact.html">Contact</a>
+            </nav>
+            
+            <div class="nav-links">
+                <a href="#" class="btn btn-outline">Post a Job</a>
+                <a href="#" class="btn btn-primary">Login / Register</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Homepage Sections -->
+    <b:if cond='data:view.isHomepage'>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Find Your Next Career Move in Morocco</h1>
+                <p>Connect with top employers in Casablanca, Rabat, Tangier, and beyond.</p>
+                
+                <div class="search-bar">
+                    <form action="/search" method="get" style="display:contents;">
+                        <div class="search-input">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="q" placeholder="Job title, keywords, or company"/>
+                        </div>
+                        <div class="search-input">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <select name="location">
+                                <option value="">All Cities</option>
+                                <option value="casablanca">Casablanca</option>
+                                <option value="rabat">Rabat</option>
+                                <option value="marrakech">Marrakech</option>
+                                <option value="tangier">Tangier</option>
+                                <option value="agadir">Agadir</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search Jobs</button>
+                    </form>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1,250+</span>
+                        <span class="stat-label">Live Jobs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Companies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Candidates</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Popular Job Categories</h2>
+                    <p>Explore opportunities in the most in-demand sectors across Morocco.</p>
+                </div>
+                
+                <div class="category-grid">
+                    <div class="category-card">
+                        <i class="fa-solid fa-laptop-code category-icon"></i>
+                        <h3 class="category-title">IT &amp; Development</h3>
+                        <span class="category-count">320 jobs</span>
+                    </div>
+                    <div class="category-card">
+                        <i class="fa-solid fa-bullhorn category-icon"></i>
+                        <h3 class="category-title">Marketing &amp; Sales</h3>
+                        <span class="category-count">180 jobs</span>
+                    </div>
+                    <div class="category-card">
+                        <i class="fa-solid fa-headset category-icon"></i>
+                        <h3 class="category-title">Customer Service</h3>
+                        <span class="category-count">250 jobs</span>
+                    </div>
+                    <div class="category-card">
+                        <i class="fa-solid fa-calculator category-icon"></i>
+                        <h3 class="category-title">Accounting &amp; Finance</h3>
+                        <span class="category-count">140 jobs</span>
+                    </div>
+                    <div class="category-card">
+                        <i class="fa-solid fa-helmet-safety category-icon"></i>
+                        <h3 class="category-title">Engineering</h3>
+                        <span class="category-count">95 jobs</span>
+                    </div>
+                    <div class="category-card">
+                        <i class="fa-solid fa-graduation-cap category-icon"></i>
+                        <h3 class="category-title">Education</h3>
+                        <span class="category-count">60 jobs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </b:if>
+
+    <!-- Main Content / Featured Jobs -->
+    <section class="featured-jobs" id="jobs">
+        <div class="container">
+            <b:if cond='data:view.isHomepage'>
+                <div class="section-title">
+                    <h2>Latest Job Openings</h2>
+                    <p>Don't miss out on the latest opportunities added today.</p>
+                </div>
+            </b:if>
+            
+            <b:section id='main' showaddelement='yes'>
+                <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog' version='2'>
+                    <b:includable id='main' var='this'>
+                        <div class="job-grid">
+                            <b:loop values='data:posts' var='post'>
+                                <b:include data='post' name='post'/>
+                            </b:loop>
+                        </div>
+                        <b:include name='nextPrev'/>
+                    </b:includable>
+
+                    <b:includable id='post' var='post'>
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div class="company-logo">
+                                    <b:if cond='data:post.firstImageUrl'>
+                                        <img expr:src='data:post.firstImageUrl' alt='Company Logo'/>
+                                    <b:else/>
+                                        <i class="fa-solid fa-building"></i>
+                                    </b:if>
+                                </div>
+                                <b:if cond='data:post.labels'>
+                                    <b:loop values='data:post.labels' var='label'>
+                                        <span class="job-type"><data:label.name/></span>
+                                    </b:loop>
+                                <b:else/>
+                                    <span class="job-type">Job</span>
+                                </b:if>
+                            </div>
+                            <h3 class="job-title"><a expr:href='data:post.url'><data:post.title/></a></h3>
+                            <span class="company-name"><data:post.author.name/></span>
+                            <div class="job-details">
+                                <span><i class="fa-solid fa-location-dot"></i> Morocco</span>
+                                <span><i class="fa-solid fa-clock"></i> <data:post.dateHeader/></span>
+                            </div>
+                            <div class="job-footer">
+                                <span class="posted-date">Posted <data:post.dateHeader/></span>
+                                <a expr:href='data:post.url' class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Apply Now</a>
+                            </div>
+                        </div>
+                    </b:includable>
+                    
+                    <b:includable id='nextPrev'>
+                        <div class="blog-pager" style="text-align: center; margin-top: 3rem; width: 100%; grid-column: 1 / -1;">
+                            <b:if cond='data:newerPageUrl'>
+                                <a class='btn btn-outline' expr:href='data:newerPageUrl' style="margin-right: 1rem;">Previous</a>
+                            </b:if>
+                            <b:if cond='data:olderPageUrl'>
+                                <a class='btn btn-primary' expr:href='data:olderPageUrl'>View More Jobs</a>
+                            </b:if>
+                        </div>
+                    </b:includable>
+
+                    <!-- Required empty includables for valid XML -->
+                    <b:includable id='aboutPostAuthor'/>
+                    <b:includable id='addComments'/>
+                    <b:includable id='commentAuthorAvatar'/>
+                    <b:includable id='commentDeleteIcon'/>
+                    <b:includable id='commentForm'/>
+                    <b:includable id='commentFormIframeSrc'/>
+                    <b:includable id='commentItem'/>
+                    <b:includable id='commentList'/>
+                    <b:includable id='commentPicker'/>
+                    <b:includable id='comments'/>
+                    <b:includable id='commentsTitle'/>
+                    <b:includable id='feedLinks'/>
+                    <b:includable id='feedLinksBody'/>
+                    <b:includable id='homePageLink'/>
+                    <b:includable id='iframeComments'/>
+                    <b:includable id='inlineAd'/>
+                    <b:includable id='mobileIndex'/>
+                    <b:includable id='mobilePost'/>
+                    <b:includable id='mobileShareButtons'/>
+                    <b:includable id='postQuickEdit'/>
+                    <b:includable id='shareButtons'/>
+                    <b:includable id='statusMessage'/>
+                    <b:includable id='threadedCommentForm'/>
+                    <b:includable id='threadedCommentJs'/>
+                    <b:includable id='threadedComments'/>
+                </b:widget>
+            </b:section>
+        </div>
+    </section>
+
+    <!-- How it Works (Homepage Only) -->
+    <b:if cond='data:view.isHomepage'>
+        <section class="how-it-works">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How Bari-Nkhdam Works</h2>
+                    <p>Simple steps to find your next job or hire your next employee.</p>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Create Account</h3>
+                        <p>Sign up for free, complete your profile, and upload your CV.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Search Jobs</h3>
+                        <p>Browse thousands of jobs by industry, location, and salary.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Apply Easily</h3>
+                        <p>Apply to jobs with one click and track your application status.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Get Hired</h3>
+                        <p>Connect with employers, schedule interviews, and get hired.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="background-color: var(--secondary); padding: 5rem 0; color: white; text-align: center;">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white;">Ready to Start Your Journey?</h2>
+                <p style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9;">Join thousands of Moroccan professionals who have found their dream jobs through Bari-Nkhdam.ma.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#" class="btn" style="background-color: white; color: var(--secondary);">Find a Job</a>
+                    <a href="#" class="btn" style="background-color: var(--primary); color: white;">Post a Job</a>
+                </div>
+            </div>
+        </section>
+    </b:if>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="/" class="logo" style="margin-bottom: 1.5rem; display: inline-block;">
+                        <i class="fa-solid fa-briefcase"></i>
+                        Bari-Nkhdam<span>.ma</span>
+                    </a>
+                    <p style="color: #9CA3AF; margin-bottom: 1.5rem;">The leading job portal in Morocco. Connecting talent with opportunity since 2025.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>For Candidates</h4>
+                    <ul>
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Browse Companies</a></li>
+                        <li><a href="#">Candidate Dashboard</a></li>
+                        <li><a href="#">CV Builder</a></li>
+                        <li><a href="#">Career Advice</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>For Employers</h4>
+                    <ul>
+                        <li><a href="#">Post a Job</a></li>
+                        <li><a href="#">Browse Candidates</a></li>
+                        <li><a href="#">Employer Dashboard</a></li>
+                        <li><a href="#">Pricing Plans</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="/p/about.html">About Us</a></li>
+                        <li><a href="/p/contact.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bari-Nkhdam.ma. All rights reserved. Made with <i class="fa-solid fa-heart" style="color: var(--primary);"></i> in Morocco.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    //<![CDATA[
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '80px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '1rem';
+                    navLinks.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        }
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Simple Animation on Scroll (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Select elements to animate
+        const animatedElements = document.querySelectorAll('.job-card, .category-card, .step-card');
+        
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    });
+    //]]>
+    </script>
+</body>
+</html>
