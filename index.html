@@ -1,341 +1,66 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bari-Nkhdam.ma - ابحث عن وظيفة أحلامك في المغرب</title>
-    <meta name="description"
-        content="بوابة التوظيف الأولى في المغرب. ابحث عن وظائف في الدار البيضاء، الرباط، مراكش وغيرها. تواصل مع أفضل أصحاب العمل اليوم.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <title>Bari Nkhdam - فرص عمل</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .job-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .job-title { color: #2c3e50; font-size: 1.5em; margin-bottom: 5px; font-weight: bold; }
+        .company { color: #e67e22; font-weight: bold; }
+        .details { color: #7f8c8d; font-size: 0.9em; margin-top: 5px; }
+    </style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <i class="fa-solid fa-briefcase"></i>
-                Bari-Nkhdam<span>.ma</span>
-            </a>
+<div class="container">
+    <h1 style="text-align:center;">🚀 آخر همزات الخدمة (Bari Nkhdam)</h1>
+    
+    <div id="job-list">
+        <p style="text-align:center;">جاري تحميل العروض...</p>
+    </div>
+</div>
 
-            <nav class="nav-links">
-                <a href="index.html">الرئيسية</a>
-                <a href="#jobs">ابحث عن عمل</a>
-                <a href="#companies">الشركات</a>
-                <a href="about.html">من نحن</a>
-                <a href="contact.html">اتصل بنا</a>
-            </nav>
+<script>
+    // هذا هو السكريبت اللي كيجيب المعلومات
+    fetch('content/data.json')
+        .then(response => {
+            if (!response.ok) throw new Error("ملف المعلومات ماكاينش");
+            return response.json();
+        })
+        .then(data => {
+            const jobList = document.getElementById('job-list');
+            
+            // واش كاينين عروض؟
+            if (!data.jobs || data.jobs.length === 0) {
+                jobList.innerHTML = "<p style='text-align:center;'>ما كاينا حتى خدمة دابا. رجع مرة أخرى!</p>";
+                return;
+            }
 
-            <div class="nav-links">
-                <a href="#" class="btn btn-outline">انشر وظيفة</a>
-                <a href="#" class="btn btn-primary">دخول / تسجيل</a>
-            </div>
+            // نمسحو كلمة "جاري التحميل"
+            jobList.innerHTML = '';
 
-            <button class="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>ابحث عن خطوتك المهنية التالية في المغرب</h1>
-            <p>تواصل مع أفضل أصحاب العمل في الدار البيضاء، الرباط، طنجة، وغيرها.</p>
-
-            <div class="search-bar">
-                <div class="search-input">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="المسمى الوظيفي، كلمات دلالية، أو اسم الشركة">
-                </div>
-                <div class="search-input">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <select>
-                        <option value="">كل المدن</option>
-                        <option value="casablanca">الدار البيضاء</option>
-                        <option value="rabat">الرباط</option>
-                        <option value="marrakech">مراكش</option>
-                        <option value="tangier">طنجة</option>
-                        <option value="agadir">أكادير</option>
-                    </select>
-                </div>
-                <div class="search-input">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <select>
-                        <option value="">كل التصنيفات</option>
-                        <option value="it">تكنولوجيا المعلومات</option>
-                        <option value="sales">المبيعات والتسويق</option>
-                        <option value="engineering">الهندسة</option>
-                        <option value="customer-service">خدمة العملاء</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary">بحث</button>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">1,250+</span>
-                    <span class="stat-label">وظيفة نشطة</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">شركة</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">10k+</span>
-                    <span class="stat-label">مرشح</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories -->
-    <section class="categories">
-        <div class="container">
-            <div class="section-title">
-                <h2>تصنيفات الوظائف الشائعة</h2>
-                <p>استكشف الفرص في القطاعات الأكثر طلباً في المغرب.</p>
-            </div>
-
-            <div class="category-grid">
-                <div class="category-card">
-                    <i class="fa-solid fa-laptop-code category-icon"></i>
-                    <h3 class="category-title">البرمجة والتطوير</h3>
-                    <span class="category-count">320 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-bullhorn category-icon"></i>
-                    <h3 class="category-title">التسويق والمبيعات</h3>
-                    <span class="category-count">180 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-headset category-icon"></i>
-                    <h3 class="category-title">خدمة العملاء</h3>
-                    <span class="category-count">250 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-calculator category-icon"></i>
-                    <h3 class="category-title">المحاسبة والمالية</h3>
-                    <span class="category-count">140 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-helmet-safety category-icon"></i>
-                    <h3 class="category-title">الهندسة</h3>
-                    <span class="category-count">95 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-graduation-cap category-icon"></i>
-                    <h3 class="category-title">التعليم</h3>
-                    <span class="category-count">60 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-user-doctor category-icon"></i>
-                    <h3 class="category-title">الرعاية الصحية</h3>
-                    <span class="category-count">85 وظيفة</span>
-                </div>
-                <div class="category-card">
-                    <i class="fa-solid fa-hotel category-icon"></i>
-                    <h3 class="category-title">السياحة والفنادق</h3>
-                    <span class="category-count">110 وظيفة</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Jobs -->
-    <section class="featured-jobs" id="jobs">
-        <div class="container">
-            <div class="section-title">
-                <h2>أحدث الوظائف</h2>
-                <p>لا تفوت أحدث الفرص المضافة اليوم.</p>
-            </div>
-
-            <div class="job-grid" id="job-container">
-                <!-- Job Cards will be dynamically inserted here by JS -->
-
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" class="btn btn-primary">عرض كل الوظائف</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <div class="section-title">
-                <h2>كيف يعمل Bari-Nkhdam</h2>
-                <p>خطوات بسيطة للعثور على وظيفتك التالية أو توظيف موظفك القادم.</p>
-            </div>
-
-            <div class="steps-container">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>أنشئ حساباً</h3>
-                    <p>سجل مجانًا، أكمل ملفك الشخصي، وقم برفع سيرتك الذاتية.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>ابحث عن وظائف</h3>
-                    <p>تصفح آلاف الوظائف حسب المجال، الموقع، والراتب.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>قدم بسهولة</h3>
-                    <p>تقدم للوظائف بنقرة واحدة وتتبع حالة طلبك.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>توظف</h3>
-                    <p>تواصل مع أصحاب العمل، حدد مواعيد المقابلات، واحصل على الوظيفة.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section style="background-color: var(--secondary); padding: 5rem 0; color: white; text-align: center;">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: white;">مستعد لبدء رحلتك؟</h2>
-            <p
-                style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9;">
-                انضم إلى آلاف المهنيين المغاربة الذين وجدوا وظائف أحلامهم عبر Bari-Nkhdam.ma.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center;">
-                <a href="#" class="btn" style="background-color: white; color: var(--secondary);">ابحث عن وظيفة</a>
-                <a href="#" class="btn" style="background-color: var(--primary); color: white;">انشر وظيفة</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="#" class="logo" style="margin-bottom: 1.5rem; display: inline-block;">
-                        <i class="fa-solid fa-briefcase"></i>
-                        Bari-Nkhdam<span>.ma</span>
-                    </a>
-                    <p style="color: #9CA3AF; margin-bottom: 1.5rem;">بوابة التوظيف الرائدة في المغرب. نربط المواهب
-                        بالفرص منذ 2025.</p>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" style="font-size: 1.25rem; color: white;"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>للمرشحين</h4>
-                    <ul>
-                        <li><a href="#">تصفح الوظائف</a></li>
-                        <li><a href="#">تصفح الشركات</a></li>
-                        <li><a href="#">لوحة تحكم المرشح</a></li>
-                        <li><a href="#">بناء السيرة الذاتية</a></li>
-                        <li><a href="#">نصائح مهنية</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>لأصحاب العمل</h4>
-                    <ul>
-                        <li><a href="#">انشر وظيفة</a></li>
-                        <li><a href="#">تصفح المرشحين</a></li>
-                        <li><a href="#">لوحة تحكم صاحب العمل</a></li>
-                        <li><a href="#">خطط الأسعار</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>الدعم</h4>
-                    <ul>
-                        <li><a href="about.html">من نحن</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">شروط الخدمة</a></li>
-                        <li><a href="#">الأسئلة الشائعة</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Bari-Nkhdam.ma. جميع الحقوق محفوظة. صنع بـ <i class="fa-solid fa-heart"
-                        style="color: var(--primary);"></i> في المغرب.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        // CMS Integration: Fetch Jobs from JSON
-        document.addEventListener('DOMContentLoaded', () => {
-            const jobsContainer = document.getElementById('job-container');
-
-            fetch('data/jobs.json')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.jobs && data.jobs.length > 0) {
-                        jobsContainer.innerHTML = ''; // Clear loading state
-                        data.jobs.forEach(job => {
-                            const date = new Date(job.date).toLocaleDateString('ar-MA');
-                            const jobCard = `
-                                <div class="job-card">
-                                    <div class="job-header">
-                                        <div class="company-logo" style="background-color: var(--primary); color: white;">${job.company.substring(0, 2)}</div>
-                                        <span class="job-type type-${job.type.toLowerCase().replace(' ', '-')}">${job.type}</span>
-                                    </div>
-                                    <h3 class="job-title">${job.title}</h3>
-                                    <span class="company-name">${job.company}</span>
-                                    <div class="job-details">
-                                        <span><i class="fa-solid fa-location-dot"></i> ${job.city}</span>
-                                        <span><i class="fa-solid fa-money-bill"></i> ${job.salary || 'N/A'}</span>
-                                    </div>
-                                    <div class="job-footer">
-                                        <span class="posted-date">${date}</span>
-                                        <a href="${job.link}" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.875rem;">قدم الآن</a>
-                                    </div>
-                                </div>
-                            `;
-                            jobsContainer.insertAdjacentHTML('beforeend', jobCard);
-                        });
-                    } else {
-                        jobsContainer.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">لا توجد وظائف متاحة حالياً.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading jobs:', error);
-                    jobsContainer.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">حدث خطأ في تحميل الوظائف.</p>';
-                });
+            // نستفو العروض واحد بواحد
+            data.jobs.forEach(job => {
+                const card = document.createElement('div');
+                card.className = 'job-card';
+                card.innerHTML = `
+                    <div class="job-title">${job.title}</div>
+                    <div class="company">🏢 ${job.company}</div>
+                    <div class="details">📍 ${job.city}</div>
+                    <p>${job.body ? job.body : ''}</p>
+                `;
+                jobList.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('job-list').innerHTML = "<p style='text-align:center;'>وقع شي مشكل فالتحميل.</p>";
         });
-    </script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
 </script>
+
 </body>
-
-
 </html>
